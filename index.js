@@ -1,11 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const { chat } = require('./chatService');
 
 const app = express();
 app.use(bodyParser.json());
-
+app.use(cors());
 // Endpoint do chatbot
 app.post('/chat', async (req, res) => {
   try {
@@ -22,6 +23,9 @@ app.post('/chat', async (req, res) => {
     console.error(err);
     res.status(500).json({ error: 'Erro no servidor do chatbot' });
   }
+});
+app.get('/', (req, res) => {
+  res.send('API do Chatbot LLM está rodando!');
 });
 
 

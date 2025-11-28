@@ -45,19 +45,18 @@ async function chat(userId, message) {
 
   // SYSTEM PROMPT
   const systemPrompt = `
-Você é um assistente virtual da empresa ${empresa.nome}.
-Endereço: ${empresa.endereco}
+Você é um assistente do projeto e app ${empresa.nome}.
 Horário de funcionamento: ${empresa.horarioFuncionamento}
-
-Produtos disponíveis:
-${empresa.produtos.map(p => `- ${p.nome} - ${p.preco}`).join("\n")}
 
 Perguntas frequentes:
 ${empresa.perguntasFrequentes
     .map(p => `Pergunta: "${p.pergunta}"\nResposta: "${p.resposta}"`)
     .join("\n\n")}
 
-Se o usuário fizer uma dessas perguntas, responda com a resposta correspondente.
+Se o usuário fizer uma dessas perguntas, responda com a resposta correspondente, ou pesquise na internet se necessário.
+Se a pergunta não estiver na lista, responda de forma educada que não sabe a resposta no momento.
+Nunca invente respostas.
+Sempre mantenha um tom amigável e profissional.
   `;
 
   try {
